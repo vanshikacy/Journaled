@@ -3,8 +3,7 @@ import {useState, useEffect} from 'react';
 import Modal from './Modal';
 import { db } from "../firebase/firebase";
 import { auth } from "../firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { collection, query, where, orderBy, getDocs, doc, deleteDoc } from "firebase/firestore";
 
 export default function Layout({children}){
@@ -66,6 +65,15 @@ const fetchEntries= async(uid)=>{
             
         }
     }
+
+    const Logout= async ()=>{
+      try{
+        await signOut(auth);
+        console.log("User signed out");
+      } catch(error){
+        console.error("Error signing out:", error);
+      }
+    }
   
     return (
         <>
@@ -73,15 +81,17 @@ const fetchEntries= async(uid)=>{
             <div id="headercontainer">
                 <h1>Journaled</h1>
                 <div id="headerbuttons">
-                {user ? (<p id="welcome">Welcome,<br />{user.displayName}</p>
+                {user ? (<><p id="welcome">Welcome,<br />{user.displayName}</p>
+                <button onClick={Logout}>Sign Out</button></>
                  ) : (
                <button onClick={handleGoogleLogin}>Sign In</button>
                )}
-                <button  id="darkmode" onClick={toggleTheme}><i class="fa-solid fa-circle-half-stroke"></i></button></div>
+                </div>
             </div>
         </header>
         <main>
             <div id="mainheader">
+            <button  id="darkmode" onClick={toggleTheme}><i class="fa-solid fa-circle-half-stroke"></i></button>
             <button id="newentry" onClick={()=>setEntryOpen(true)}>New Entry</button>
 
             <input type="text" placeholder="Search by Title"
