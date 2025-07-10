@@ -1,6 +1,7 @@
 import { db } from "../firebase/firebase";
 import {collection, addDoc, serverTimestamp, doc, updateDoc} from "firebase/firestore";
 import {useState, useEffect} from "react";
+import { auth } from '../firebase/firebase'; 
 
 
 export default function Entry({onClose, currentEntry, fetchEntries}){
@@ -55,18 +56,22 @@ export default function Entry({onClose, currentEntry, fetchEntries}){
       setMood("");
       setContent("");
 
-      if (typeof onClose === "function") fetchEntries();
+      if (typeof fetchEntries === "function") fetchEntries();
       if(typeof onClose==="function") onClose();
     } catch (err) {
       console.error("Failed to save/update entry", err.message);
       alert("Something went wrong: " + err.message);
     }
   };
+
+  const [startDate, setStartDate] =useState(null);
+  useEffect(()=>{
+    setStartDate(new Date())}, []);
   
     return (
         <div>
         <form id="entryform" onSubmit={handleSubmit}>
-            <p id="date">14 Jan 2003</p>
+            <p id="date">{startDate ? startDate.toLocaleDateString() : "New Entry"}</p>
             <input type="text" placeholder="How are we feeling today?" 
             value={title}
             onChange={(e)=> setTitle(e.target.value)} 
