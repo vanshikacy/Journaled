@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+:root {
+  --bg-start: #ffeef3;
+  --bg-mid: #f7bece;
+  --bg-end: #940434;
+
+  --text-main: rgb(56, 19, 54);
+  --text-muted: grey;
+  --text-mood: rgb(69, 5, 44);
+  --placeholder-text: rgb(69, 5, 44);
+  --link-color: rgb(111, 86, 58);
+
+  --btn-bg: rgb(56, 19, 54);
+  --btn-text: beige;
+  --btn-shadow: rgb(214, 194, 165);
+  --highlight-pink: pink;
+
+  --form-bg: beige;
+
+  --entry-bg: rgb(121, 17, 81);
+  --entry-text-active: beige;
+
+  --icon-hover: rgb(230, 157, 169);
+}
+
+[data-theme="dark"] {
+  --bg-start: #09001a;
+  --bg-mid: #0f081c;
+  --bg-end: #2b2b2d;
+
+  --text-main: #e5b3f6;
+  --text-muted: #888;
+  --text-mood: #746687;
+  --placeholder-text: #5c0c38;
+  --link-color: #d3b3a0;
+
+  --btn-bg: #37203c;
+  --btn-text: #f0d98b;
+  --btn-shadow: rgba(231, 196, 196, 0.5);
+  --highlight-pink: #d87093;
+
+  --form-bg: #4d365c;
+  --entry-bg: #792340;
+  --entry-text-active: #ede0f5;
+
+  --icon-hover: #290844;
+}
+
+body {
+  margin: 0 2rem;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  background: linear-gradient(to bottom right, var(--bg-start), var(--bg-mid), var(--bg-end));
+  font-size: 1.125rem;
+  line-height: 1.7;
+  background-repeat: no-repeat;
+  color: var(--text-main);
+}
+
+main{
+  height: 100vh;
+}
+
+
+
+input, textarea, select, button {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+}
+
+input::placeholder, select {
+  color: var(--placeholder-text);
+}
+
+a {
+  color: var(--link-color);
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+  background: linear-gradient(90deg, var(--text-mood), #c15171, #c8b26a, #792340, var(--text-mood));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#headercontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#headerbuttons {
+  display: flex;
+  gap: 1rem;
+}
+
+#mainheader {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+#entrylist {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#entryform {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.3rem;
+  background-color: var(--form-bg);
+  padding: 1rem;
+  height: 70vh;
+  width: 60vh
+}
+
+#welcome{
+  font-size: 0.4rem;
+}
+
+#entryform input,
+#entryform textarea,
+#entryform form,
+#entryform #moods {
+  width: 80%;
+  box-sizing: border-box;
+}
+
+#moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+textarea {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+}
+
+#date {
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+}
+
+button {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  box-shadow: 2px 3px 0 var(--btn-shadow);
+}
+
+button:active {
+  transform: translate(2px, 3px);
+  box-shadow: none;
+  color: var(--highlight-pink);
+}
+
+#moods button {
+  all: unset;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--btn-moods);
+}
+
+#entry {
+  all: unset;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--highlight-pink);
+  text-align: left;
+  background-color: var(--entry-bg);
+  border-radius: 5px;
+  padding: 0 1rem;
+}
+
+#entry:active {
+  color: var(--entry-text-active);
+}
+
+#darkmode {
+  border-radius: 46%;
+}
+
+i:hover {
+  color: var(--icon-hover);
+}
+
+#entrylist button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 1rem;
+}
+
+#entrylist button #right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+footer{
+  padding-top: 1rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+#loginform{
+  background-color: var(--form-bg);
+  border-radius: 5px;
+  padding: 5vh 10vh;
+  margin: 0;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+#buttons{
+  display: flex;
+  gap: 1vh;
+}
+
+#moods button.selected {
+  background-color: var(--highlight); 
+  border: 2px solid #555;
+  transform: scale(1.1);
+}
+
+#deletebtn{
+  box-shadow: none;
+}
+
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  body{
+    margin: 0 20rem;
+  }
+  
+  
+}
